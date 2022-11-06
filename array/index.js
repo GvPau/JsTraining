@@ -18,6 +18,21 @@ const posts = [
   },
 ];
 
+// Gets all tags and returns elements duplicated,
+// creates a new array and removes duplicates
+// sorts elements alphabetically
+// filters elements that do not include "a"
+// returns array of remaning tags
+const result = posts.reduce((allTags, post) => {
+  return Array.from(
+    new Set(
+      [...allTags, ...post.tags].sort().filter((tag) => tag.includes("a"))
+    )
+  );
+}, []);
+
+console.log("result: ", result);
+
 // Find
 const find = posts.find((post) => post.title == "Mi primer post"); // Return whole object
 
@@ -36,8 +51,3 @@ const map2 = posts.map((post) => post.tags.includes("javascript")); // Returns a
 
 // Filter
 const filter = posts.filter((post) => post?.title); // Return array of objects, second and third
-
-// Reduce
-const reduce = posts.reduce((allTags, post) => {
-  return Array.from(new Set([...allTags, ...post.tags])); // Gets all tags and returns them duplicated, them creates a new array and removes duplicates
-}, []);
